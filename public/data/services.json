@@ -1,0 +1,46 @@
+{
+    "services": [
+        {
+            "id": "seo",
+            "name": "SEO",
+            "description": "Optimització SEO",
+            "price": 300,
+            "options": []
+        },
+        {
+            "id": "ads",
+            "name": "Ads",
+            "description": "Marketing i gestió d'anuncis online",
+            "price": 400,
+            "options": []
+        },
+        {
+            "id": "web",
+            "name": "Web",
+            "description": "Programació d'una web responsive completa",
+            "price": 500,
+            "options": [
+                {
+                    "id": "pages",
+                    "name": "Nombre de pàgines",
+                    "unitPrice": 30,
+                    "min": 1,
+                    "info": {
+                        "title": "Nombre de pàgines",
+                        "text": "Afegeix les pàgines que tindrà el teu projecte. El cost de cada pàgina és de 30€"
+                    }
+                },
+                {
+                    "id": "languages",
+                    "name": "Nombre d'idiomes",
+                    "unitPrice": 30,
+                    "min": 1,
+                    "info": {
+                        "title": "Nombre d'idiomes",
+                        "text": "Afegeix els idiomes que tindrà el teu projecte. El cost de cada idioma és de 30€"
+                    }
+                }
+            ]
+        }
+    ]
+}
