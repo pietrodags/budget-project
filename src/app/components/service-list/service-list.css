@@ -1,15 +1,4 @@
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* ---------- Mòbil (base) ---------- */
+/* ---------- Móvil (base) ---------- */
 
 .services {
   --card-background: #ffffff;
@@ -40,6 +29,10 @@
   border-radius: var(--card-radius);
   background: var(--card-background);
   box-shadow: var(--card-shadow);
+}
+
+.service-card--selected {
+  border-color: var(--accent);
 }
 
 .service-card__text {
@@ -84,7 +77,7 @@
   outline-offset: 2px;
 }
 
-/* ---------- Tauleta: la targeta passa a ser una fila ---------- */
+/* ---------- Tableta: la tarjeta pasa a ser una fila ---------- */
 
 @media (min-width: 40rem) {
   .service-card {
@@ -102,7 +95,7 @@
   }
 }
 
-/* ---------- Escriptori ---------- */
+/* ---------- Escritorio ---------- */
 
 @media (min-width: 64rem) {
   .services {

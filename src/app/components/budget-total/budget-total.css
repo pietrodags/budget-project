@@ -1,0 +1,72 @@
+/* ---------- Móvil (base) ---------- */
+
+.budget-total {
+  --total-text: #111827;
+
+  padding: 0 1rem 2rem;
+}
+
+.budget-total__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  color: var(--total-text);
+}
+
+.budget-total__label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.budget-total__amount {
+  font-size: 2rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.budget-total__currency {
+  margin-left: 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* ---------- Tableta: etiqueta e importe juntos, a la derecha ---------- */
+
+@media (min-width: 40rem) {
+  .budget-total__row {
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+
+  .budget-total__amount {
+    font-size: 2.25rem;
+  }
+}
+
+/* ---------- Escritorio: misma columna que las tarjetas ---------- */
+
+@media (min-width: 64rem) {
+  .budget-total {
+    padding: 0 1rem 3rem;
+  }
+
+  .budget-total__row {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .budget-total__label {
+    font-size: 1.125rem;
+  }
+
+  .budget-total__amount {
+    font-size: 2.5rem;
+  }
+
+  .budget-total__currency {
+    font-size: 1.125rem;
+  }
+}

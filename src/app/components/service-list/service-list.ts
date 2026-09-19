@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Catalog } from '../../services/catalog';
+import { Budget } from '../../services/budget';
 
 @Component({
   imports: [],
@@ -9,4 +10,5 @@ import { Catalog } from '../../services/catalog';
 })
 export class ServiceList {
   protected readonly catalog = inject(Catalog);
+  protected readonly budget = inject(Budget);
 }
