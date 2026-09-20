@@ -1,0 +1,57 @@
+/* ---------- Móvil (base) ---------- */
+
+.page-header {
+  padding: 1rem;
+}
+
+.page-header__brand {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.page-header__hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+  padding: 2rem 1.5rem;
+  border-radius: 0.75rem;
+  background: #f7f5f0;
+}
+
+.page-header__title {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* ---------- Tableta ---------- */
+
+@media (min-width: 40rem) {
+  .page-header__hero {
+    min-height: 10rem;
+  }
+
+  .page-header__title {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Escritorio ---------- */
+
+@media (min-width: 64rem) {
+  .page-header {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding: 1.5rem 1rem 0;
+  }
+
+  .page-header__hero {
+    min-height: 11rem;
+  }
+
+  .page-header__title {
+    font-size: 2.5rem;
+  }
+}
