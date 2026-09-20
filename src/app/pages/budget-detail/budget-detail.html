@@ -1,0 +1,62 @@
+<section class="budget-detail">
+  <p class="budget-detail__back">
+    <a routerLink="/">← Torna al pressupost</a>
+  </p>
+
+  @if (budget(); as saved) {
+    <h1 class="budget-detail__title">
+      Pressupost del {{ saved.createdAt | date: 'dd/MM/yyyy' }}
+    </h1>
+
+    <dl class="budget-detail__client">
+      <dt>Nom</dt>
+      <dd>{{ saved.client.name }}</dd>
+
+      <dt>Email</dt>
+      <dd>{{ saved.client.email }}</dd>
+
+      <dt>Telèfon</dt>
+      <dd>{{ saved.client.phone }}</dd>
+    </dl>
+
+    @for (line of saved.lines; track line.serviceId) {
+      <article class="budget-line">
+        <h2 class="budget-line__name">
+          {{ line.serviceName }}
+          <span class="budget-line__price">{{ line.basePrice }} €</span>
+        </h2>
+
+        @if (line.options.length > 0) {
+          <ul class="budget-line__options">
+            @for (option of line.options; track option.optionId) {
+              <li class="budget-line__option">
+                <span>{{ option.optionName }}</span>
+                <span class="budget-line__detail">
+                  {{ option.quantity }} × {{ option.unitPrice }} €
+                </span>
+                <span class="budget-line__price">
+                  {{ option.quantity * option.unitPrice }} €
+                </span>
+              </li>
+            }
+          </ul>
+        }
+
+        <p class="budget-line__subtotal">
+          <span>Subtotal</span>
+          <span class="budget-line__price">{{ line.subtotal }} €</span>
+        </p>
+      </article>
+    }
+
+    <p class="budget-detail__total">
+      <span>Total</span>
+      <span class="budget-detail__amount">{{ saved.total }} €</span>
+    </p>
+  } @else {
+    <p class="budget-detail__missing">
+      No s'ha trobat aquest pressupost. Recorda que l'històric només es guarda mentre
+      no recarreguis la pàgina.
+    </p>
+  }
+</section>

@@ -1,0 +1,121 @@
+/* ---------- Móvil (base) ---------- */
+
+.budget-detail {
+  --muted: #6b7280;
+  --accent: #2c8c74;
+
+  padding: 1.5rem 1rem 3rem;
+}
+
+.budget-detail__back {
+  margin: 0 0 1.5rem;
+  font-size: 0.875rem;
+}
+
+.budget-detail__back a {
+  color: var(--accent);
+}
+
+.budget-detail__title {
+  margin: 0 0 1rem;
+  font-size: 1.375rem;
+}
+
+.budget-detail__client {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0 0 2rem;
+  font-size: 0.875rem;
+}
+
+.budget-detail__client dt {
+  color: var(--muted);
+}
+
+.budget-detail__client dd {
+  margin: 0;
+}
+
+.budget-line {
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.budget-line__name {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.budget-line__options {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.budget-line__option {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.budget-line__detail {
+  margin-left: auto;
+}
+
+.budget-line__price {
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+.budget-line__subtotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.budget-detail__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 2px solid #111827;
+  font-weight: 700;
+}
+
+.budget-detail__amount {
+  font-size: 1.75rem;
+}
+
+.budget-detail__missing {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---------- Escritorio ---------- */
+
+@media (min-width: 64rem) {
+  .budget-detail {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .budget-detail__title {
+    font-size: 1.75rem;
+  }
+}

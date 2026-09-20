@@ -1,10 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { BudgetHistory } from '../../services/budget-history';
 
 type SortBy = 'date' | 'amount' | 'name';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-budget-list',
   styleUrl: './budget-list.css',
   templateUrl: './budget-list.html',
