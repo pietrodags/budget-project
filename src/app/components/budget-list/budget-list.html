@@ -1,42 +1,79 @@
 @if (history.saved().length > 0) {
   <section class="budget-list">
-    <h2 class="budget-list__title">Pressupostos en curs:</h2>
+    <div class="budget-list__header">
+      <h2 class="budget-list__title">Pressupostos en curs:</h2>
 
-    <ul class="budget-list__items">
-      @for (budget of history.saved(); track budget.id) {
-        <li class="budget-card">
-          <div class="budget-card__client">
-            <h3 class="budget-card__name">{{ budget.client.name }}</h3>
-            <p class="budget-card__contact">{{ budget.client.email }}</p>
-            <p class="budget-card__contact">{{ budget.client.phone }}</p>
-          </div>
+      <div class="budget-list__tools">
+        <p class="budget-list__search">
+          <label class="visually-hidden" for="budget-search">Cerca per nom</label>
+          <input
+            id="budget-search"
+            type="search"
+            placeholder="Cerca"
+            [value]="search()"
+            (input)="onSearch($event)"
+          />
+        </p>
 
-          <div class="budget-card__services">
-            <p class="budget-card__label">Serveis contractats:</p>
+        <div class="budget-list__sort" role="group" aria-label="Ordena els pressupostos">
+          @for (criterion of criteria; track criterion.id) {
+            <button
+              type="button"
+              class="budget-list__sort-button"
+              [class.budget-list__sort-button--active]="sortBy() === criterion.id"
+              [attr.aria-pressed]="sortBy() === criterion.id"
+              (click)="setSortBy(criterion.id)"
+            >
+              {{ criterion.label }}
 
-            <ul class="budget-card__lines">
-              @for (line of budget.lines; track line.serviceId) {
-                <li>
-                  {{ line.serviceName }}
-
-                  @if (line.options.length > 0) {
-                    <ul class="budget-card__options">
-                      @for (option of line.options; track option.optionId) {
-                        <li>{{ option.optionName }}: {{ option.quantity }}</li>
-                      }
-                    </ul>
-                  }
-                </li>
+              @if (sortBy() === criterion.id) {
+                <span aria-hidden="true">▽</span>
               }
-            </ul>
-          </div>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
 
-          <p class="budget-card__total">
-            <span class="budget-card__label">Total:</span>
-            <span class="budget-card__amount">{{ budget.total }} €</span>
-          </p>
-        </li>
-      }
-    </ul>
+    @if (visible().length > 0) {
+      <ul class="budget-list__items">
+        @for (budget of visible(); track budget.id) {
+          <li class="budget-card">
+            <div class="budget-card__client">
+              <h3 class="budget-card__name">{{ budget.client.name }}</h3>
+              <p class="budget-card__contact">{{ budget.client.email }}</p>
+              <p class="budget-card__contact">{{ budget.client.phone }}</p>
+            </div>
+
+            <div class="budget-card__services">
+              <p class="budget-card__label">Serveis contractats:</p>
+
+              <ul class="budget-card__lines">
+                @for (line of budget.lines; track line.serviceId) {
+                  <li>
+                    {{ line.serviceName }}
+
+                    @if (line.options.length > 0) {
+                      <ul class="budget-card__options">
+                        @for (option of line.options; track option.optionId) {
+                          <li>{{ option.optionName }}: {{ option.quantity }}</li>
+                        }
+                      </ul>
+                    }
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <p class="budget-card__total">
+              <span class="budget-card__label">Total:</span>
+              <span class="budget-card__amount">{{ budget.total }} €</span>
+            </p>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="budget-list__empty">No s'ha trobat cap pressupost amb aquest nom.</p>
+    }
   </section>
 }

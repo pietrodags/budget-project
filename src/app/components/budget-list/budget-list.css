@@ -6,9 +6,73 @@
   padding: 2rem 1rem;
 }
 
+.budget-list__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
 .budget-list__title {
-  margin: 0 0 1rem;
+  margin: 0;
   font-size: 1.125rem;
+}
+
+.budget-list__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.budget-list__search {
+  margin: 0;
+}
+
+.budget-list__search input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.budget-list__search input:focus-visible {
+  outline: 2px solid #2c8c74;
+  outline-offset: 1px;
+}
+
+.budget-list__sort {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.budget-list__sort-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.budget-list__sort-button--active {
+  color: #111827;
+  font-weight: 700;
+}
+
+.budget-list__sort-button:focus-visible {
+  outline: 2px solid #2c8c74;
+  outline-offset: 2px;
+}
+
+.budget-list__empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
 }
 
 .budget-list__items {
@@ -77,6 +141,12 @@
 /* ---------- Tableta: las tres zonas en fila ---------- */
 
 @media (min-width: 40rem) {
+  .budget-list__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .budget-card {
     flex-direction: row;
     align-items: flex-start;
@@ -103,12 +173,10 @@
 
 @media (min-width: 64rem) {
   .budget-list__items,
-  .budget-list__title {
+  .budget-list__header {
     max-width: 48rem;
     margin-inline: auto;
   }
 
-  .budget-list__title {
-    margin-bottom: 1rem;
-  }
+
 }
