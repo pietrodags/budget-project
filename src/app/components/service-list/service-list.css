@@ -21,14 +21,20 @@
 
 .service-card {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 1.25rem;
   border: 1px solid transparent;
   border-radius: var(--card-radius);
   background: var(--card-background);
   box-shadow: var(--card-shadow);
+}
+
+.service-card__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
 }
 
 .service-card--selected {
@@ -77,13 +83,16 @@
   outline-offset: 2px;
 }
 
-/* ---------- Tableta: la tarjeta pasa a ser una fila ---------- */
+/* ---------- Tableta: la fila principal deja de partirse ---------- */
 
 @media (min-width: 40rem) {
   .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-card__main {
     flex-wrap: nowrap;
     gap: 1.5rem;
-    padding: 1.5rem;
   }
 
   .service-card__text {
