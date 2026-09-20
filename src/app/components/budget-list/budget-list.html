@@ -1,0 +1,42 @@
+@if (history.saved().length > 0) {
+  <section class="budget-list">
+    <h2 class="budget-list__title">Pressupostos en curs:</h2>
+
+    <ul class="budget-list__items">
+      @for (budget of history.saved(); track budget.id) {
+        <li class="budget-card">
+          <div class="budget-card__client">
+            <h3 class="budget-card__name">{{ budget.client.name }}</h3>
+            <p class="budget-card__contact">{{ budget.client.email }}</p>
+            <p class="budget-card__contact">{{ budget.client.phone }}</p>
+          </div>
+
+          <div class="budget-card__services">
+            <p class="budget-card__label">Serveis contractats:</p>
+
+            <ul class="budget-card__lines">
+              @for (line of budget.lines; track line.serviceId) {
+                <li>
+                  {{ line.serviceName }}
+
+                  @if (line.options.length > 0) {
+                    <ul class="budget-card__options">
+                      @for (option of line.options; track option.optionId) {
+                        <li>{{ option.optionName }}: {{ option.quantity }}</li>
+                      }
+                    </ul>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+
+          <p class="budget-card__total">
+            <span class="budget-card__label">Total:</span>
+            <span class="budget-card__amount">{{ budget.total }} €</span>
+          </p>
+        </li>
+      }
+    </ul>
+  </section>
+}

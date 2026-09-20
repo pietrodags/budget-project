@@ -1,5 +1,7 @@
 import { Service, computed, inject, signal } from '@angular/core';
 import { Catalog } from './catalog';
+import { BudgetLine } from '../models/budget-line';
+import { ChosenOption } from '../models/chosen-option';
 import { SelectedService } from '../models/selected-service';
 import { subtotalOf } from '../utils/pricing';
 
@@ -11,12 +13,41 @@ export class Budget {
 
     readonly selected = this.selection.asReadonly();
 
-    readonly total = computed(() =>
-        this.selection().reduce((sum, selected) => {
+    readonly lines = computed(() => {
+        const lines: BudgetLine[] = [];
+
+        for (const selected of this.selection()) {
             const service = this.serviceById(selected.serviceId);
 
-            return service ? sum + subtotalOf(service, selected.options) : sum;
-        }, 0),
+            if (!service) {
+                continue;
+            }
+
+            const options: ChosenOption[] = [];
+
+            for (const option of service.options) {
+                options.push({
+                    optionId: option.id,
+                    optionName: option.name,
+                    unitPrice: option.unitPrice,
+                    quantity: selected.options[option.id] ?? 0,
+                });
+            }
+
+            lines.push({
+                serviceId: service.id,
+                serviceName: service.name,
+                basePrice: service.price,
+                options,
+                subtotal: subtotalOf(service, selected.options),
+            });
+        }
+
+        return lines;
+    });
+
+    readonly total = computed(() =>
+        this.lines().reduce((sum, line) => sum + line.subtotal, 0),
     );
 
     isSelected(serviceId: string): boolean {
@@ -61,7 +92,10 @@ export class Budget {
         this.changeQuantity(serviceId, optionId, -1);
     }
 
-    /** Suma delta a una cantidad, sin bajar nunca del mínimo declarado en el JSON. */
+    clear(): void {
+        this.selection.set([]);
+    }
+
     private changeQuantity(serviceId: string, optionId: string, delta: number): void {
         const option = this.optionById(serviceId, optionId);
 
@@ -80,12 +114,10 @@ export class Budget {
         );
     }
 
-    /** Busca un servicio del catálogo por su id. */
     private serviceById(serviceId: string) {
         return this.catalog.services().find((candidate) => candidate.id === serviceId);
     }
 
-    /** Busca una opción dentro de un servicio del catálogo. */
     private optionById(serviceId: string, optionId: string) {
         return this.serviceById(serviceId)?.options.find((candidate) => candidate.id === optionId);
     }

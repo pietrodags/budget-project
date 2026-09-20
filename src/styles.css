@@ -1,6 +1,9 @@
-/* Estilos globales de la aplicación */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-/* Oculta un elemento visualmente, pero lo deja accesible para lectores de pantalla */
 .visually-hidden {
   position: absolute;
   width: 1px;

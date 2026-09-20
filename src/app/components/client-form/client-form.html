@@ -1,0 +1,69 @@
+<section class="client-form">
+  <h2 class="client-form__title">Demanar pressupost</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="client-form__fields">
+      <p class="client-form__field">
+        <label class="visually-hidden" for="client-name">Nom</label>
+        <input
+          id="client-name"
+          type="text"
+          formControlName="name"
+          placeholder="Nom"
+          autocomplete="name"
+          [attr.aria-invalid]="showError(form.controls.name) || null"
+          [attr.aria-describedby]="showError(form.controls.name) ? 'client-name-error' : null"
+        />
+        @if (showError(form.controls.name)) {
+          <span class="client-form__error" id="client-name-error">El nom és obligatori.</span>
+        }
+      </p>
+
+      <p class="client-form__field">
+        <label class="visually-hidden" for="client-phone">Telèfon</label>
+        <input
+          id="client-phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="Telèfon"
+          autocomplete="tel"
+          [attr.aria-invalid]="showError(form.controls.phone) || null"
+          [attr.aria-describedby]="showError(form.controls.phone) ? 'client-phone-error' : null"
+        />
+        @if (showError(form.controls.phone)) {
+          <span class="client-form__error" id="client-phone-error">El telèfon és obligatori.</span>
+        }
+      </p>
+
+      <p class="client-form__field">
+        <label class="visually-hidden" for="client-email">Email</label>
+        <input
+          id="client-email"
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          autocomplete="email"
+          [attr.aria-invalid]="showError(form.controls.email) || null"
+          [attr.aria-describedby]="showError(form.controls.email) ? 'client-email-error' : null"
+        />
+        @if (showError(form.controls.email)) {
+          <span class="client-form__error" id="client-email-error">
+            @if (form.controls.email.hasError('required')) {
+              L'email és obligatori.
+            } @else {
+              Escriu un email vàlid.
+            }
+          </span>
+        }
+      </p>
+
+      <button type="submit" class="client-form__submit">Sol·licitar pressupost →</button>
+    </div>
+
+    @if (submitted() && budget.selected().length === 0) {
+      <p class="client-form__error client-form__error--form" role="alert">
+        Cal seleccionar almenys un servei abans de demanar el pressupost.
+      </p>
+    }
+  </form>
+</section>
