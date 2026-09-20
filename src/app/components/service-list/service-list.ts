@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Catalog } from '../../services/catalog';
 import { Budget } from '../../services/budget';
+import { ServiceOptions } from '../service-options/service-options';
 
 @Component({
-  imports: [],
+  imports: [ServiceOptions],
   selector: 'app-service-list',
   styleUrl: './service-list.css',
   templateUrl: './service-list.html',
