@@ -11,6 +11,7 @@ describe('InfoDialog', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(InfoDialog);
+    fixture.componentRef.setInput('info', { title: 'Pàgines', text: 'Cada pàgina costa 30 €' });
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

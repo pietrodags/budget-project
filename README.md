@@ -1,59 +1,110 @@
-# BudgetProject
+# Pressupostos de serveis digitals
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.7.
+Aplicació SPA feta amb **Angular 22** que permet configurar i calcular el pressupost
+d'una web: es trien els serveis, es configuren les opcions de la web i es veu el total
+actualitzat al moment. Els pressupostos demanats queden en un històric que es pot
+cercar i ordenar, amb una pàgina de detall per a cadascun.
 
-## Development server
+Projecte formatiu del **Sprint 04 de l'IT Academy**.
 
-To start a local development server, run:
+## Demo
 
-```bash
-ng serve
-```
+*(Pendent de desplegament.)*
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Posada en marxa
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Cal **Node.js 20 o superior**.
 
 ```bash
-ng generate --help
+npm install
+npm start
 ```
 
-## Building
+L'aplicació queda a `http://localhost:4200/`.
 
-To build the project run:
+## Tests
 
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Els escenaris estan escrits en **Gherkin** dins dels noms dels tests, amb l'estructura
+`Feature` → `Scenario` → `Given / When / Then`, de manera que es llegeixen directament
+a la sortida de la comanda.
 
-## Running unit tests
+## Regles de negoci
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+| Servei | Preu |
+|---|---|
+| SEO | 300 € |
+| Ads | 400 € |
+| Web | 500 € de base |
 
-```bash
-ng test
+La web és configurable: cada pàgina i cada idioma sumen 30 €.
+
+```
+total del servei = preu base + Σ (quantitat × preu unitari de cada opció)
 ```
 
-## Running end-to-end tests
+Exemple: una web amb 1 pàgina i 3 idiomes val `500 + (1 + 3) × 30 = 620 €`.
 
-For end-to-end (e2e) testing, run:
+## Dades configurables
 
-```bash
-ng e2e
+El catàleg viu a `public/data/services.json` i es carrega en temps d'execució, així que
+es poden canviar preus, descripcions, opcions i els textos dels modals informatius
+**sense recompilar**.
+
+## Estructura
+
+```
+src/app/
+├── components/   peces reutilitzables (llista de serveis, total, formulari, històric…)
+├── pages/        vistes que pinta el router (inici i detall d'un pressupost)
+├── services/     estat compartit (catàleg, pressupost en curs, històric)
+├── models/       interfícies de dades
+└── utils/        funcions pures (càlcul de preus)
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Hi ha dues famílies de models: les que descriuen **el catàleg** (`Service`,
+`ServiceOption`) i les que descriuen **un pressupost desat** (`SavedBudget`,
+`BudgetLine`, `ChosenOption`). Un pressupost desat copia noms i preus del moment en què
+es va crear, de manera que un canvi posterior al catàleg no altera els pressupostos
+antics.
 
-## Additional Resources
+## Rutes
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Ruta | Vista |
+|---|---|
+| `/` | configuració del pressupost, formulari i històric |
+| `/pressupost/:id` | detall desglossat d'un pressupost desat |
+
+## Accessibilitat
+
+Marcatge semàntic, tots els controls accessibles amb teclat, etiquetes visualment
+ocultes per als camps del formulari, `aria-label` als botons d'icona, estats de focus
+visibles i regions anunciades amb `aria-live`.
+
+## Disseny responsive
+
+Mobile-first: l'estil base és el de mòbil i s'amplia amb `min-width` als breakpoints de
+**40rem** (tauleta) i **64rem** (escriptori).
+
+## Flux de treball amb Git
+
+Git Flow: `main` per a les versions desplegades, `develop` com a branca d'integració i
+una branca `feature/…` o `fix/…` per a cada peça, integrada amb `merge --no-ff`.
+
+## Abast
+
+Implementat:
+
+- Èpica 1 — creació i càlcul del pressupost
+- Èpica 2 — dades del client i vista de detall
+- Èpica 3 — històric amb cerca i ordenació
+
+Fora d'abast, per decisió pròpia:
+
+- **Èpica 4** — compartició per URL i exportació a PDF.
+- **Persistència** — l'històric viu només en memòria: en recarregar la pàgina es buida.
+- **Textos de la interfície configurables per JSON** — les dades i els textos de negoci
+  sí que surten de `services.json`; els textos de la interfície són al codi.
