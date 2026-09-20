@@ -7,6 +7,8 @@ cercar i ordenar, amb una pàgina de detall per a cadascun.
 
 Projecte formatiu del **Sprint 04 de l'IT Academy**.
 
+![Vista principal de l'aplicació: la llista de serveis amb els seus preus, el preu total, el formulari per demanar un pressupost i l'històric de pressupostos amb cerca i ordenació.](public/img/preview.png)
+
 ## Demo
 
 *(Pendent de desplegament.)*
