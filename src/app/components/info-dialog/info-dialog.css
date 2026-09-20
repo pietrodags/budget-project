@@ -1,0 +1,72 @@
+:host {
+  display: contents;
+}
+
+.info-dialog {
+  width: calc(100% - 2rem);
+  max-width: 26rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgb(0 0 0 / 25%);
+}
+
+.info-dialog::backdrop {
+  background: rgb(0 0 0 / 55%);
+}
+
+.info-dialog__content {
+  position: relative;
+  padding: 2.5rem 1.75rem;
+  text-align: center;
+}
+
+.info-dialog__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.info-dialog__close:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.info-dialog__close:focus-visible {
+  outline: 2px solid #2c8c74;
+  outline-offset: 2px;
+}
+
+.info-dialog__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.info-dialog__text {
+  margin: 0;
+  color: #374151;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* ---------- Escritorio ---------- */
+
+@media (min-width: 40rem) {
+  .info-dialog__content {
+    padding: 3rem 2.5rem;
+  }
+
+  .info-dialog__title {
+    font-size: 1.5rem;
+  }
+}

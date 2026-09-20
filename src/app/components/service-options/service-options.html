@@ -1,7 +1,18 @@
 <ul class="service-options">
   @for (option of service().options; track option.id) {
     <li class="service-options__row">
-      <span class="service-options__name">{{ option.name }}</span>
+      <span class="service-options__label">
+        <span class="service-options__name">{{ option.name }}</span>
+
+        <button
+          type="button"
+          class="service-options__info"
+          [attr.aria-label]="'Més informació sobre ' + option.name"
+          (click)="dialog.open()"
+        >
+          ⓘ
+        </button>
+      </span>
 
       <span class="service-options__stepper">
         <button
@@ -27,6 +38,8 @@
           +
         </button>
       </span>
+
+      <app-info-dialog #dialog [info]="option.info" />
     </li>
   }
 </ul>

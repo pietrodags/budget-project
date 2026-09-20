@@ -1,0 +1,20 @@
+<dialog
+  #dialog
+  class="info-dialog"
+  [attr.aria-label]="info().title"
+  (click)="onBackdropClick($event)"
+>
+  <div class="info-dialog__content">
+    <button
+      type="button"
+      class="info-dialog__close"
+      aria-label="Tanca"
+      (click)="close()"
+    >
+      ✕
+    </button>
+
+    <h2 class="info-dialog__title">{{ info().title }}</h2>
+    <p class="info-dialog__text">{{ info().text }}</p>
+  </div>
+</dialog>
