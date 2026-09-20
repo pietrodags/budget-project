@@ -1,28 +1,28 @@
-# Pressupostos de serveis digitals
+# Presupuestos de servicios digitales
 
-Aplicació SPA feta amb **Angular 22** que permet configurar i calcular el pressupost
-d'una web: es trien els serveis, es configuren les opcions de la web i es veu el total
-actualitzat al moment. Els pressupostos demanats queden en un històric que es pot
-cercar i ordenar, amb una pàgina de detall per a cadascun.
+Aplicación SPA hecha con **Angular 22** que permite configurar y calcular el presupuesto
+de una web: se eligen los servicios, se configuran las opciones de la web y se ve el
+total actualizado al momento. Los presupuestos solicitados quedan en un histórico que se
+puede buscar y ordenar, con una página de detalle para cada uno.
 
-Projecte formatiu del **Sprint 04 de l'IT Academy**.
+Proyecto formativo del **Sprint 04 de la IT Academy**.
 
-![Vista principal de l'aplicació: la llista de serveis amb els seus preus, el preu total, el formulari per demanar un pressupost i l'històric de pressupostos amb cerca i ordenació.](public/img/preview.png)
+![Vista principal de la aplicación: la lista de servicios con sus precios, el precio total, el formulario para solicitar un presupuesto y el histórico de presupuestos con búsqueda y ordenación.](public/img/preview.png)
 
 ## Demo
 
-*(Pendent de desplegament.)*
+*(Pendiente de despliegue.)*
 
-## Posada en marxa
+## Puesta en marcha
 
-Cal **Node.js 20 o superior**.
+Hace falta **Node.js 20 o superior**.
 
 ```bash
 npm install
 npm start
 ```
 
-L'aplicació queda a `http://localhost:4200/`.
+La aplicación queda en `http://localhost:4200/`.
 
 ## Tests
 
@@ -30,83 +30,85 @@ L'aplicació queda a `http://localhost:4200/`.
 npm test
 ```
 
-Els escenaris estan escrits en **Gherkin** dins dels noms dels tests, amb l'estructura
-`Feature` → `Scenario` → `Given / When / Then`, de manera que es llegeixen directament
-a la sortida de la comanda.
+Los escenarios están escritos en **Gherkin** dentro de los nombres de los tests, con la
+estructura `Feature` → `Scenario` → `Given / When / Then`, de manera que se leen
+directamente en la salida del comando.
 
-## Regles de negoci
+## Reglas de negocio
 
-| Servei | Preu |
+| Servicio | Precio |
 |---|---|
 | SEO | 300 € |
 | Ads | 400 € |
 | Web | 500 € de base |
 
-La web és configurable: cada pàgina i cada idioma sumen 30 €.
+La web es configurable: cada página y cada idioma suman 30 €.
 
 ```
-total del servei = preu base + Σ (quantitat × preu unitari de cada opció)
+total del servicio = precio base + Σ (cantidad × precio unitario de cada opción)
 ```
 
-Exemple: una web amb 1 pàgina i 3 idiomes val `500 + (1 + 3) × 30 = 620 €`.
+Ejemplo: una web con 1 página y 3 idiomas vale `500 + (1 + 3) × 30 = 620 €`.
 
-## Dades configurables
+## Datos configurables
 
-El catàleg viu a `public/data/services.json` i es carrega en temps d'execució, així que
-es poden canviar preus, descripcions, opcions i els textos dels modals informatius
-**sense recompilar**.
+El catálogo vive en `public/data/services.json` y se carga en tiempo de ejecución, así
+que se pueden cambiar precios, descripciones, opciones y los textos de los modales
+informativos **sin recompilar**.
 
 ## Estructura
 
 ```
 src/app/
-├── components/   peces reutilitzables (llista de serveis, total, formulari, històric…)
-├── pages/        vistes que pinta el router (inici i detall d'un pressupost)
-├── services/     estat compartit (catàleg, pressupost en curs, històric)
-├── models/       interfícies de dades
-└── utils/        funcions pures (càlcul de preus)
+├── components/   piezas reutilizables (lista de servicios, total, formulario, histórico…)
+├── pages/        vistas que pinta el router (inicio y detalle de un presupuesto)
+├── services/     estado compartido (catálogo, presupuesto en curso, histórico)
+├── models/       interfaces de datos
+└── utils/        funciones puras (cálculo de precios)
 ```
 
-Hi ha dues famílies de models: les que descriuen **el catàleg** (`Service`,
-`ServiceOption`) i les que descriuen **un pressupost desat** (`SavedBudget`,
-`BudgetLine`, `ChosenOption`). Un pressupost desat copia noms i preus del moment en què
-es va crear, de manera que un canvi posterior al catàleg no altera els pressupostos
-antics.
+Hay dos familias de modelos: las que describen **el catálogo** (`Service`,
+`ServiceOption`) y las que describen **un presupuesto guardado** (`SavedBudget`,
+`BudgetLine`, `ChosenOption`). Un presupuesto guardado copia nombres y precios del
+momento en que se creó, de forma que un cambio posterior en el catálogo no altera los
+presupuestos antiguos.
 
-## Rutes
+## Rutas
 
 | Ruta | Vista |
 |---|---|
-| `/` | configuració del pressupost, formulari i històric |
-| `/pressupost/:id` | detall desglossat d'un pressupost desat |
+| `/` | configuración del presupuesto, formulario e histórico |
+| `/pressupost/:id` | detalle desglosado de un presupuesto guardado |
 
-## Accessibilitat
+## Accesibilidad
 
-Marcatge semàntic, tots els controls accessibles amb teclat, etiquetes visualment
-ocultes per als camps del formulari, `aria-label` als botons d'icona, estats de focus
-visibles i regions anunciades amb `aria-live`.
+Marcado semántico, todos los controles accesibles con teclado, etiquetas visualmente
+ocultas para los campos del formulario, `aria-label` en los botones de icono, estados de
+foco visibles y regiones anunciadas con `aria-live`.
 
-## Disseny responsive
+La interfaz está en catalán; el código y la documentación, no.
 
-Mobile-first: l'estil base és el de mòbil i s'amplia amb `min-width` als breakpoints de
-**40rem** (tauleta) i **64rem** (escriptori).
+## Diseño responsive
 
-## Flux de treball amb Git
+Mobile-first: el estilo base es el de móvil y se amplía con `min-width` en los
+breakpoints de **40rem** (tableta) y **64rem** (escritorio).
 
-Git Flow: `main` per a les versions desplegades, `develop` com a branca d'integració i
-una branca `feature/…` o `fix/…` per a cada peça, integrada amb `merge --no-ff`.
+## Flujo de trabajo con Git
 
-## Abast
+Git Flow: `main` para las versiones desplegadas, `develop` como rama de integración y una
+rama `feature/…` o `fix/…` por cada pieza, integrada con `merge --no-ff`.
 
-Implementat:
+## Alcance
 
-- Èpica 1 — creació i càlcul del pressupost
-- Èpica 2 — dades del client i vista de detall
-- Èpica 3 — històric amb cerca i ordenació
+Implementado:
 
-Fora d'abast, per decisió pròpia:
+- Épica 1 — creación y cálculo del presupuesto
+- Épica 2 — datos del cliente y vista de detalle
+- Épica 3 — histórico con búsqueda y ordenación
 
-- **Èpica 4** — compartició per URL i exportació a PDF.
-- **Persistència** — l'històric viu només en memòria: en recarregar la pàgina es buida.
-- **Textos de la interfície configurables per JSON** — les dades i els textos de negoci
-  sí que surten de `services.json`; els textos de la interfície són al codi.
+Fuera de alcance, por decisión propia:
+
+- **Épica 4** — compartir por URL y exportación a PDF.
+- **Persistencia** — el histórico vive solo en memoria: al recargar la página se vacía.
+- **Textos de la interfaz configurables por JSON** — los datos y los textos de negocio sí
+  salen de `services.json`; los textos de la interfaz están en el código.
