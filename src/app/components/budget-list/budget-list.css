@@ -138,6 +138,11 @@
   font-weight: 700;
 }
 
+.budget-card__link {
+  color: #2c8c74;
+  font-size: 0.8125rem;
+}
+
 /* ---------- Tableta: las tres zonas en fila ---------- */
 
 @media (min-width: 40rem) {

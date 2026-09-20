@@ -68,6 +68,9 @@
             <p class="budget-card__total">
               <span class="budget-card__label">Total:</span>
               <span class="budget-card__amount">{{ budget.total }} €</span>
+              <a class="budget-card__link" [routerLink]="['/pressupost', budget.id]">
+                Veure el detall →
+              </a>
             </p>
           </li>
         }
