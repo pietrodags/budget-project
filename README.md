@@ -98,6 +98,11 @@ breakpoints de **40rem** (tableta) y **64rem** (escritorio).
 Git Flow: `main` para las versiones desplegadas, `develop` como rama de integración y una
 rama `feature/…` o `fix/…` por cada pieza, integrada con `merge --no-ff`.
 
+## Documentación
+
+- [Componentes y servicios](docs/componentes-y-servicios.md)
+- [Roadmap del proyecto](docs/roadmap.md)
+
 ## Alcance
 
 Implementado:
